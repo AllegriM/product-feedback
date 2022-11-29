@@ -12,6 +12,7 @@ const ButtonProps = z.object({
 type ButtonProps = z.infer<typeof ButtonProps>;
 
 function Button({ color, text, icon }: ButtonProps) {
+  console.log(color);
   const navigate = useNavigate();
   return (
     <button

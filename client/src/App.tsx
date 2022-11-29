@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Suggestions from './pages/Suggestions';
 import FeedBackDetail from './pages/FeedBackDetail';
 import EditFeedBack from './pages/EditFeedBack';
-import NewFeedback from './pages/NewFeedback';
+import NewFeedBack from './pages/NewFeedBack';
 import Roadmap from './pages/Roadmap';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Suggestions />} />
-        <Route path="/new-feedback" element={<NewFeedback />} />
+        <Route path="/new-feedback" element={<NewFeedBack />} />
         <Route path="/edit-feedback" element={<EditFeedBack />} />
         <Route path="/feedback-detail/:id" element={<FeedBackDetail />} />
         <Route path="/roadmap" element={<Roadmap />} />

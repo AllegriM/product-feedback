@@ -10,13 +10,15 @@ const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <Link to={'/'}>
-      <nav className="sticky top-0 mx-auto flex justify-center">
+    <>
+      <nav className="sticky top-0 mx-auto flex justify-center z-50">
         <div className="absolute flex items-center justify-between h-full w-10/12">
-          <div className="text-left">
-            <h4 className="font-bold">Frontend Mentor</h4>
-            <p className="">FeedBack Board</p>
-          </div>
+          <Link to={'/'}>
+            <div className="text-left">
+              <h4 className="font-bold">Frontend Mentor</h4>
+              <p className="">FeedBack Board</p>
+            </div>
+          </Link>
           {!isOpen ? (
             <button onClick={() => setIsOpen(!isOpen)}>
               <HamburguerIcon />
@@ -30,7 +32,7 @@ const NavBar: React.FC = () => {
         <img src={mobileBanner} className="" alt="bannerImage" />
       </nav>
       <Filters isOpen={isOpen} />
-    </Link>
+    </>
   );
 };
 

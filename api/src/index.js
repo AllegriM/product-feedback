@@ -1,8 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
+const client = require('./db');
 const routes = require('./routes/app.routes');
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.DB_PORT || 8080;
 
 const app = express();
 
@@ -16,5 +17,6 @@ app.use((err, req, res, next) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`Server connected and running on PORT: ${PORT}`);
+  client.connect()
+  console.log(`Connected succesfully to DB`)
 });

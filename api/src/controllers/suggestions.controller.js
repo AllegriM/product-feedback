@@ -1,8 +1,8 @@
-const client = require('../db')
+const pool = require('../db')
 
 const getAllFeedbacks = async (req, res, next) => {
     try {
-        const allFeedbacks = await client.query("SELECT * FROM feedback")
+        const allFeedbacks = await pool.query("SELECT * FROM feedback")
         res.status(200).json({ feedbacks: allFeedbacks.rows })
     } catch (error) {
         next(error)
@@ -12,7 +12,7 @@ const getAllFeedbacks = async (req, res, next) => {
 const getFeedBack = async (req, res, next) => {
     const { id } = req.params
     try {
-        const feedback = await client.query("SELECT * FROM feedback WHERE id = $1", [id])
+        const feedback = await pool.query("SELECT * FROM feedback WHERE id = $1", [id])
         if (!feedback.rows.length) {
             return res.status(404).json({ message: "Feedback not found! Provide a valid ID" })
         }
@@ -25,7 +25,7 @@ const getFeedBack = async (req, res, next) => {
 const createFeedBack = async (req, res, next) => {
     const { title, category, detail } = req.body
     try {
-        const createdItem = await client.query('INSERT INTO feedback (title, category, detail) VALUES ($1, $2, $3) RETURNING *', [
+        const createdItem = await pool.query('INSERT INTO feedback (title, category, detail) VALUES ($1, $2, $3) RETURNING *', [
             title,
             category,
             detail
@@ -40,7 +40,7 @@ const editFeedBack = async (req, res, next) => {
     const { id } = req.params
     const { title, category, detail } = req.body
     try {
-        const updatedFeedback = await client.query("UPDATE feedback SET title = $1, category = $2, detail = $3 WHERE id = $4 RETURNING *", [
+        const updatedFeedback = await pool.query("UPDATE feedback SET title = $1, category = $2, detail = $3 WHERE id = $4 RETURNING *", [
             title,
             category,
             detail,
@@ -56,7 +56,7 @@ const editFeedBack = async (req, res, next) => {
 const deleteFeedBack = async (req, res, next) => {
     const { id } = req.params
     try {
-        const deletedFeedBack = await client.query("DELETE FROM feedback WHERE id = $1", [id])
+        const deletedFeedBack = await pool.query("DELETE FROM feedback WHERE id = $1", [id])
         if (!deletedFeedBack.rowCount) {
             return res.status(404).json({ message: "Feedback not found! Provide a valid ID" })
         }

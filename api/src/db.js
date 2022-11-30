@@ -1,7 +1,7 @@
-const { Client } = require('pg')
+const { Pool } = require('pg')
 const { db } = require('./config')
 
-const client = new Client({
+const pool = new Pool({
     user: db.user,
     password: db.password,
     host: db.host,
@@ -10,4 +10,4 @@ const client = new Client({
     ssl: true
 })
 
-module.exports = client
+module.exports = pool

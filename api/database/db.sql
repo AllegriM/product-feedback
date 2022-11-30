@@ -1,8 +1,8 @@
-CREATE DATABASE products;
+CREATE DATABASE productfeedback;
 
-CREATE TABLE product(
+CREATE TABLE feedback(
     id SERIAL PRIMARY KEY,
-    title VARCHAR(55) UNIQUE,
-    category VARCHAR(55),
-    upvotes INT
-)
+    title VARCHAR(255) UNIQUE,
+    category VARCHAR(255),
+    detail VARCHAR(255)
+);

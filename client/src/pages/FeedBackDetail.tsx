@@ -18,9 +18,7 @@ function FeedBackDetail() {
         <h4 className="text-xl font-bold">{commentsLength ? `${commentsLength} comments` : 'No comments yet'}</h4>
         <ul>
           {productData.comments?.map((comment) => {
-            // Find last comment
-            const lastComment = productData.comments[productData.comments.length - 1].id;
-            return <SuggestionComments key={comment.id} comment={comment} lastComment={lastComment} />;
+            return <SuggestionComments key={comment.id} comment={comment} />;
           })}
         </ul>
       </div>

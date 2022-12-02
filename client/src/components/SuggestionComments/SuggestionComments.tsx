@@ -1,6 +1,5 @@
 import React from 'react';
 import { z } from 'zod';
-import AddComment from '../AddComment/AddComment';
 import CommentReplies, { ReplyProps } from '../CommentReplies/CommentReplies';
 
 const CommentProps = z.object({
@@ -14,14 +13,13 @@ const CommentProps = z.object({
     }),
     replies: z.array(ReplyProps),
   }),
-  lastComment: z.number(),
 });
 
 type CommentsProps = z.infer<typeof CommentProps>;
 
-function SuggestionComments({ comment, lastComment }: CommentsProps) {
+function SuggestionComments({ comment }: CommentsProps) {
   return (
-    <li className={`${lastComment === comment.id ? '' : 'border-b-2'} grid grid-cols-4 items-center py-4`}>
+    <li className={`last:border-none border-b-2 grid grid-cols-4 items-center py-4`}>
       <img src={comment.user.image} className="rounded-full w-12 col-span-1" alt={comment.user.name} />
       <div className="col-span-2">
         <p className="font-bold">@{comment.user.name}</p>
